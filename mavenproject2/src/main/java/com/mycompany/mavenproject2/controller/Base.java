@@ -23,6 +23,9 @@ import java.util.logging.Logger;
  */
 public class Base extends HttpServlet {
     public String SESSAO_USUARIO_ID;
+    public String CONTEXTO_NOME = "";
+    public int REGISTROS_POR_PAGINA = 50;
+    public int QUANTIDADE_PAGINAS;
     
     public boolean validaAcesso(HttpServletRequest request, HttpServletResponse response){
         try {
@@ -53,6 +56,7 @@ public class Base extends HttpServlet {
                     Registro reg = (Registro) request.getSession().getAttribute("usuario");
                     SESSAO_USUARIO_ID = reg.getFieldValueByName("id");
                     request.setAttribute("SESSAO_USUARIO_DADOS",request.getSession().getAttribute("usuario"));
+                    processaPaginacao(request, response);
                     return true;
                 }
             } catch (SQLException ex) {
@@ -66,6 +70,26 @@ public class Base extends HttpServlet {
             Logger.getLogger(Base.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
+    }
+    
+    private void processaPaginacao(HttpServletRequest request, HttpServletResponse response){
+        if (!CONTEXTO_NOME.equals("")) {
+            String comando;
+            comando = "SELECT QTD FROM (SELECT SUM(*) AS QTD FROM "+CONTEXTO_NOME+")";
+            Dao dao = new Dao();
+            try {
+                DataSet ds = dao.getQuery(comando);
+                int qtdReg = Integer.parseInt(ds.getRegistros().get(0).getFieldValueByName("QTD"));
+                int qtdRes = qtdReg % REGISTROS_POR_PAGINA;
+                if (qtdRes == 0) {
+                    request.setAttribute("qtdPaginas", qtdReg / REGISTROS_POR_PAGINA);
+                } else {
+                    request.setAttribute("qtdPaginas", (qtdReg / REGISTROS_POR_PAGINA) + 1);
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(Base.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     
     @Override

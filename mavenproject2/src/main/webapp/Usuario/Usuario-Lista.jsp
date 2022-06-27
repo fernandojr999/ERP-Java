@@ -18,6 +18,7 @@
         <a href="./">.. Voltar</a>
         <a href="./Usuario?op=n">Novo </a>|
         Pesquisar: <input type="text" id="pesquisa" name="pesquisa"> <button onclick="pesquisarOnClick()">Ir</button>
+        <a href="./Usuario?op=massa&qtd=1000">Cadastrar massa de usuários</a>
         <hr>
         
         <%
@@ -47,6 +48,16 @@
             }
         %>
         </table>
+        
+        
+        <%
+        int qtdPaginas = (int)request.getAttribute("qtdPaginas"); 
+        for (int i = 0; i <= qtdPaginas - 1; i++){
+        %>
+        <a href="./Usuario?pagina=<%=i%>"><%=i + 1%></a>
+        <%
+            }
+        %>
 
         
     </body>

@@ -128,13 +128,19 @@ public class Dao {
     }
     
     public void execCommand(String comando){
-        Conexao con = new Conexao();
-        
-        con.Conectar();
-        Statement stmt;  
         try {
-            stmt = Conexao.con.createStatement(ResultSet.TYPE_FORWARD_ONLY,ResultSet.CONCUR_READ_ONLY);
-            stmt.executeUpdate(comando);
+            Conexao con = new Conexao();
+            
+            con.Conectar();
+            Statement stmt;
+            try {
+                stmt = Conexao.con.createStatement(ResultSet.TYPE_FORWARD_ONLY,ResultSet.CONCUR_READ_ONLY);
+                stmt.executeUpdate(comando);
+            } catch (SQLException ex) {
+                Logger.getLogger(Dao.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            Conexao.con.close();
         } catch (SQLException ex) {
             Logger.getLogger(Dao.class.getName()).log(Level.SEVERE, null, ex);
         }

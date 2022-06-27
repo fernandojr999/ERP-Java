@@ -6,6 +6,7 @@ package com.mycompany.mavenproject2.controller;
 
 import com.mycompany.mavenproject2.dao.Dao;
 import com.mycompany.mavenproject2.dao.DataSet;
+import com.mycompany.mavenproject2.regras.FunUsuario;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -14,15 +15,11 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author sankhya
- */
 public class Usuario extends Base {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        CONTEXTO_NOME  = "USUARIO";
          if (validaAcesso(request, response)){
                 String op = request.getParameter("op");
             if ((op == null) || op.equals("")) {
@@ -58,8 +55,13 @@ public class Usuario extends Base {
                             } catch (SQLException ex) {
                                 Logger.getLogger(Produto.class.getName()).log(Level.SEVERE, null, ex);
                             }
+                        } else {
+                            if (op.equals("massa")){
+                                FunUsuario fun = new FunUsuario();
+                                fun.cadastroUsuarioMassa(Integer.parseInt(request.getParameter("qtd")));
+                            }
                         }
-                    }
+                    } 
                 }
             }
         }
