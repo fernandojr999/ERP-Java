@@ -24,6 +24,10 @@
         <servlet-name>PedidoItem</servlet-name>
         <servlet-class>com.mycompany.mavenproject2.controller.PedidoItem</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AdministracaoSistema</servlet-name>
+        <servlet-class>com.mycompany.mavenproject2.controller.admin.AdministracaoSistema</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Produto</servlet-name>
         <url-pattern>/Produto</url-pattern>
@@ -48,10 +52,14 @@
         <servlet-name>PedidoItem</servlet-name>
         <url-pattern>/PedidoItem</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdministracaoSistema</servlet-name>
+        <url-pattern>/AdministracaoSistema</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
         <welcome-file-list>
-            <welcome-file>Produto</welcome-file>
+            <welcome-file>Login</welcome-file>
         </welcome-file-list>
     </session-config>
 </web-app>

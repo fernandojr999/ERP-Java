@@ -14,4 +14,7 @@
     <body>
         <%@include file="header.html" %>
     </body>
+    <script>
+        
+    </script>
 </html>

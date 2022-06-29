@@ -75,7 +75,7 @@ public class Base extends HttpServlet {
     private void processaPaginacao(HttpServletRequest request, HttpServletResponse response){
         if (!CONTEXTO_NOME.equals("")) {
             String comando;
-            comando = "SELECT QTD FROM (SELECT SUM(*) AS QTD FROM "+CONTEXTO_NOME+")";
+            comando = "SELECT QTD FROM (SELECT COUNT(*) AS QTD FROM "+CONTEXTO_NOME+") AS TAB";
             Dao dao = new Dao();
             try {
                 DataSet ds = dao.getQuery(comando);

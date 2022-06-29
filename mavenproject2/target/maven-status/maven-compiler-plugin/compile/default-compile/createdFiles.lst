@@ -1,6 +1,16 @@
+com\mycompany\mavenproject2\controller\PedidoItem.class
+com\mycompany\mavenproject2\dao\DataSet.class
+com\mycompany\mavenproject2\dao\Registro.class
 com\mycompany\mavenproject2\JakartaRestConfiguration.class
+com\mycompany\mavenproject2\dao\Campo.class
 com\mycompany\mavenproject2\resources\JakartaEE9Resource.class
+com\mycompany\mavenproject2\controller\Pedido.class
+com\mycompany\mavenproject2\bd\Conexao.class
 com\mycompany\mavenproject2\controller\Base.class
 com\mycompany\mavenproject2\controller\Usuario.class
-com\mycompany\mavenproject2\model\Produto.class
+com\mycompany\mavenproject2\dao\Dao.class
+com\mycompany\mavenproject2\controller\Cliente.class
+com\mycompany\mavenproject2\regras\FunUsuario.class
 com\mycompany\mavenproject2\controller\Produto.class
+com\mycompany\mavenproject2\controller\admin\AdministracaoSistema.class
+com\mycompany\mavenproject2\controller\Login.class
