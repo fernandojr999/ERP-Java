@@ -1,5 +1,6 @@
 package com.mycompany.mavenproject2;
 
+import com.mycompany.mavenproject2.controller.construtor.ComandosAtualizacao;
 import jakarta.ws.rs.ApplicationPath;
 import jakarta.ws.rs.core.Application;
 
@@ -9,5 +10,11 @@ import jakarta.ws.rs.core.Application;
  */
 @ApplicationPath("resources")
 public class JakartaRestConfiguration extends Application {
+
+    public JakartaRestConfiguration() {
+        System.out.println("Verificando atualizações...");
+        
+        ComandosAtualizacao com = new ComandosAtualizacao();
+    }
     
 }

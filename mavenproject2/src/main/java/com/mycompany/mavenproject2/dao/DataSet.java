@@ -4,7 +4,10 @@
  */
 package com.mycompany.mavenproject2.dao;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -82,6 +85,8 @@ public class DataSet {
             
             comando = comando + " WHERE ID = " + registros.get(0).getFieldValueByName("id");
         } else {
+            registros.get(0).getFieldByName("id").setValue(""+NewID(tabela));
+            
             comando = "INSERT INTO "+tabela+"( ";
             
             for (int i = 0; i <= campos.size() - 1; i++) {
@@ -114,5 +119,17 @@ public class DataSet {
         
         Dao dao = new Dao();
         dao.execCommand(comando);
+    }
+    
+    public int NewID(String tabela){
+        try {
+            Dao d = new Dao();
+            DataSet ds = d.getQuery("SELECT IDENTIFICADOR FROM IDENTIFICADORES WHERE TABELANOME = "+tabela);
+            d.execCommand("UPDATE IDENTIFICADORES SET IDENTIFICADOR = IDENTIFICADOR + 1 WHERE TABELANOME = "+tabela);
+            return Integer.parseInt(ds.getRegistros().get(0).getFieldValueByName("IDENTIFICADOR"));
+        } catch (SQLException ex) {
+            Logger.getLogger(DataSet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
     }
 }

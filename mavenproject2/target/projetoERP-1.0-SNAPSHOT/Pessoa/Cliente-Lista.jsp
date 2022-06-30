@@ -10,11 +10,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Produtos</title>
+        <title>Clientes</title>
     </head>
     <body>
         <%@include file="../header.html" %>
-        <h1>Produtos</h1>
+        <h1>Clientes</h1>
         <a href="./">.. Voltar</a>
         <a href="./Cliente?op=n">Novo </a>|
         Pesquisar: <input type="text" id="pesquisa" name="pesquisa"> <button onclick="pesquisarOnClick()">Ir</button>

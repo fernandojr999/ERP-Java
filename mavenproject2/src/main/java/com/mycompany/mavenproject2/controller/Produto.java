@@ -23,7 +23,7 @@ public class Produto extends Base {
                 String op = request.getParameter("op");
             if ((op == null) || op.equals("")) {
                 Dao dao = new Dao();
-                dao.setTabela("PRODUTO");
+                dao.setTabela("PRODUTOS");
                     try {
                         String where = request.getParameter("q");
                         if (where == null){
@@ -42,13 +42,13 @@ public class Produto extends Base {
                 } else {
                     if (op.equals("d")) {
                         Dao dao = new Dao();
-                        dao.execCommand("DELETE FROM PRODUTO WHERE ID = "+request.getParameter("id"));
+                        dao.execCommand("DELETE FROM PRODUTOS WHERE ID = "+request.getParameter("id"));
                         response.sendRedirect(request.getContextPath() + "/Produto");
                     } else{
                         if (op.equals("e")) {
                             try {
                                 Dao dao = new Dao();
-                                dao.setTabela("PRODUTO");
+                                dao.setTabela("PRODUTOS");
                                 request.setAttribute("registro", dao.getRecords("where id = "+request.getParameter("id")));
                                 getServletContext().getRequestDispatcher("/Produto/Produto-Cadastro.jsp").forward(request, response);
                             } catch (SQLException ex) {
@@ -68,10 +68,10 @@ public class Produto extends Base {
         request.setCharacterEncoding("utf8");
         
         Dao dao = new Dao();
-        dao.setTabela("PRODUTO");
+        dao.setTabela("PRODUTOS");
         try {
             DataSet ds = dao.getRecords("where id = "+request.getParameter("id"));
-            ds.setTabela("PRODUTO");
+            ds.setTabela("PRODUTOS");
             
             if (!ds.getRegistros().isEmpty()) {
                ds.setEstado(1);

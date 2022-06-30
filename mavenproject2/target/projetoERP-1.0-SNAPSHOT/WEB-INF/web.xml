@@ -28,6 +28,10 @@
         <servlet-name>AdministracaoSistema</servlet-name>
         <servlet-class>com.mycompany.mavenproject2.controller.admin.AdministracaoSistema</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>OrdemProducao</servlet-name>
+        <servlet-class>com.mycompany.mavenproject2.controller.producao.OrdemProducao</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Produto</servlet-name>
         <url-pattern>/Produto</url-pattern>
@@ -55,6 +59,10 @@
     <servlet-mapping>
         <servlet-name>AdministracaoSistema</servlet-name>
         <url-pattern>/AdministracaoSistema</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrdemProducao</servlet-name>
+        <url-pattern>/OrdemProducao</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

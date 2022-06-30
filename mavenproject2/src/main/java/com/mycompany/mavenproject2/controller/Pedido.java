@@ -76,13 +76,13 @@ public class Pedido extends Base {
                                 request.setAttribute("clientes", daoPes.getRecords(""));
                                 
                                 Dao daoPro = new Dao();
-                                daoPro.setTabela("PRODUTO");
+                                daoPro.setTabela("PRODUTOS");
                                 request.setAttribute("produtos", daoPro.getRecords(""));
                                 
                                 Dao daoIte = new Dao();
                                 String consulta = "SELECT ITE.*, PRO.NOME "+
                                                     "FROM PEDIDOITEM ITE "+
-                                                    "INNER JOIN PRODUTO PRO ON PRO.ID = ITE.PRODUTO "+
+                                                    "INNER JOIN PRODUTOS PRO ON PRO.ID = ITE.PRODUTO "+
                                                     "WHERE ITE.PEDIDO = "+request.getParameter("id");
                                 request.setAttribute("itens", daoIte.getQuery(consulta));
                                 
