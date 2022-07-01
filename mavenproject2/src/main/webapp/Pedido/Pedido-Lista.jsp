@@ -57,7 +57,7 @@
     
     <script>
         function pesquisarOnClick(){
-            window.location.href = "./Produto?q="+document.querySelector("#pesquisa").value;
+            window.location.href = "./Pedido?q="+document.querySelector("#pesquisa").value;
         }
 
     </script>

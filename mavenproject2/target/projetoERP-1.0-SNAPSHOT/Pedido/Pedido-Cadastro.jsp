@@ -71,7 +71,7 @@
             
           </form> 
             <%
-            if (dsProdutos != null){
+            if (dsItens != null){
             %>
             <h3>Itens do Pedido</h3>
             
@@ -113,7 +113,7 @@
                 <th><%= dsItens.getRegistros().get(i).getFieldValueByName("quantidade") %></th>
                 <th><%= dsItens.getRegistros().get(i).getFieldValueByName("valorunitario") %></th>
                 <th><%= dsItens.getRegistros().get(i).getFieldValueByName("valortotal") %></th>
-                <th><a href="./PedidoItem?op=d&id=<%= dsProdutos.getRegistros().get(i).getFieldValueByName("id") %>">Excluir</a>
+                <th><a href="./PedidoItem?op=d&id=<%= dsItens.getRegistros().get(i).getFieldValueByName("id") %>">Excluir</a>
                 </th>
 
             </tr>

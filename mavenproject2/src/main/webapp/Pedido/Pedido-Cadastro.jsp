@@ -71,7 +71,7 @@
             
           </form> 
             <%
-            if (dsProdutos != null){
+            if (dsItens != null){
             %>
             <h3>Itens do Pedido</h3>
             
@@ -97,9 +97,14 @@
                     %>
                     </select>
                 </th>
-                <th><input type="number" name="item-quantidade" id="item-quantidade" value="0"></th>
-                <th><input type="number" name="item-valorunitario" id="item-valorunitario" value="0"></th>
-                <th><input type="number" name="item-valortotal" id="item-valortotal" value="0" disabled></th>
+                <th><input type="text" name="item-nome" id="item-nome" value="0"></th>
+                <th><input type="text" name="item-legenda" id="item-legenda" value="0"></th>
+                <select name="item-tipo" id="item-tipo">
+                    <option value="1">String</option>
+                    <option value="2">Integer</option>
+                    <option value="3">Date</option>
+                    <option value="3">Double</option>
+                </select>
                 <th><button onclick="adicionarItemOnClick()">Adicionar</button>
                 </th>
             </tr>
@@ -110,10 +115,9 @@
             <tr>
                 <th><%= dsItens.getRegistros().get(i).getFieldValueByName("id") %></th>
                 <th><%= dsItens.getRegistros().get(i).getFieldValueByName("nome") %></th>
-                <th><%= dsItens.getRegistros().get(i).getFieldValueByName("quantidade") %></th>
-                <th><%= dsItens.getRegistros().get(i).getFieldValueByName("valorunitario") %></th>
-                <th><%= dsItens.getRegistros().get(i).getFieldValueByName("valortotal") %></th>
-                <th><a href="./PedidoItem?op=d&id=<%= dsProdutos.getRegistros().get(i).getFieldValueByName("id") %>">Excluir</a>
+                <th><%= dsItens.getRegistros().get(i).getFieldValueByName("legenda") %></th>
+                <th><%= dsItens.getRegistros().get(i).getFieldValueByName("tipo") %></th>
+                <th><a href="./PedidoItem?op=d&id=<%= dsItens.getRegistros().get(i).getFieldValueByName("id") %>">Excluir</a>
                 </th>
 
             </tr>
@@ -128,12 +132,12 @@
         
         <script>
             function adicionarItemOnClick(){
-                let pedido = document.querySelector("#id").value;
-                let produto = document.querySelector("#item-produto").value;
-                let quantidade = document.querySelector("#item-quantidade").value;
-                let valorunitario = document.querySelector("#item-valorunitario").value;
+                let cadastro = document.querySelector("#id").value;
+                let nome = document.querySelector("#item-nome").value;
+                let legenda = document.querySelector("#item-legenda").value;
+                let tipo = document.querySelector("#item-tipo").value;
                 
-                window.location.href = "./PedidoItem?op=i&pedido="+pedido+"&quantidade="+quantidade+"&produto="+produto+"&valorunitario="+valorunitario;
+                window.location.href = "./CriarCadastroCampo?op=i&cadastro="+cadastro+"&nome="+nome+"&legenda="+legenda+"&tipo="+tipo;
             } 
             
         </script>

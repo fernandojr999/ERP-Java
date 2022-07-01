@@ -124,8 +124,8 @@ public class DataSet {
     public int NewID(String tabela){
         try {
             Dao d = new Dao();
-            DataSet ds = d.getQuery("SELECT IDENTIFICADOR FROM IDENTIFICADORES WHERE TABELANOME = "+tabela);
-            d.execCommand("UPDATE IDENTIFICADORES SET IDENTIFICADOR = IDENTIFICADOR + 1 WHERE TABELANOME = "+tabela);
+            DataSet ds = d.getQuery("SELECT IDENTIFICADOR FROM IDENTIFICADORES WHERE TABELANOME = '"+tabela+"'");
+            d.execCommand("UPDATE IDENTIFICADORES SET IDENTIFICADOR = IDENTIFICADOR + 1 WHERE TABELANOME = '"+tabela+"'");
             return Integer.parseInt(ds.getRegistros().get(0).getFieldValueByName("IDENTIFICADOR"));
         } catch (SQLException ex) {
             Logger.getLogger(DataSet.class.getName()).log(Level.SEVERE, null, ex);

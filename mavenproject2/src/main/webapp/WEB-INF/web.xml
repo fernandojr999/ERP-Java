@@ -32,6 +32,18 @@
         <servlet-name>OrdemProducao</servlet-name>
         <servlet-class>com.mycompany.mavenproject2.controller.producao.OrdemProducao</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Cadastro</servlet-name>
+        <servlet-class>com.mycompany.mavenproject2.controller.construtor.Cadastro</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CriarCadastro</servlet-name>
+        <servlet-class>com.mycompany.mavenproject2.controller.construtor.CriarCadastro</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CriarCadastroCampo</servlet-name>
+        <servlet-class>com.mycompany.mavenproject2.controller.construtor.CriarCadastroCampo</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Produto</servlet-name>
         <url-pattern>/Produto</url-pattern>
@@ -63,6 +75,18 @@
     <servlet-mapping>
         <servlet-name>OrdemProducao</servlet-name>
         <url-pattern>/OrdemProducao</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Cadastro</servlet-name>
+        <url-pattern>/Cadastro</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CriarCadastro</servlet-name>
+        <url-pattern>/CriarCadastro</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CriarCadastroCampo</servlet-name>
+        <url-pattern>/CriarCadastroCampo</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
