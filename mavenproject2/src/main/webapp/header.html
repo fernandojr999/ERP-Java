@@ -5,7 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"
-        import="com.mycompany.mavenproject2.dao.Registro"%>
+        import="com.mycompany.mavenproject2.dao.Registro"
+        import="com.mycompany.mavenproject2.dao.DataSet" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -63,7 +64,9 @@
         }
     </style>
     <body>
-        
+        <%
+        DataSet dscad = (DataSet) request.getAttribute("cadastros-dinamicos"); 
+        %>
         <div class="dropdown">
             <button class="dropbtn">Cadastros</button>
             <div class="dropdown-content">
@@ -86,6 +89,20 @@
                 <a href="./OperacaoProducao">Operações de Produção</a>
                 <a href="./ProgramacaoProducao">Programação de Produção</a>
                 <a href="./FichaTecnica">Fichas Tecnicas</a>
+            </div>
+        </div>
+        
+        <div class="dropdown">
+            <button class="dropbtn">Cadastros Personalizados</button>
+            <div class="dropdown-content">
+                <%
+                if (dscad != null){
+                for (int i = 0; i <= dscad.getRegistros().size() - 1; i++){
+                %>
+                <a href="./Cadastro?cad=<%= dscad.getRegistros().get(i).getFieldValueByName("id") %>"><%= dscad.getRegistros().get(i).getFieldValueByName("legenda") %></a>
+                <%
+                    }}
+                %>
             </div>
         </div>
         

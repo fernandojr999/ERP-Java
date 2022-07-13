@@ -56,6 +56,7 @@ public class Base extends HttpServlet {
                     Registro reg = (Registro) request.getSession().getAttribute("usuario");
                     SESSAO_USUARIO_ID = reg.getFieldValueByName("id");
                     request.setAttribute("SESSAO_USUARIO_DADOS",request.getSession().getAttribute("usuario"));
+                    adicionaCadastrosDinamicosHeader(request, response);
                     processaPaginacao(request, response);
                     return true;
                 }
@@ -90,6 +91,17 @@ public class Base extends HttpServlet {
                 Logger.getLogger(Base.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+    }
+    
+    public void adicionaCadastrosDinamicosHeader(HttpServletRequest request, HttpServletResponse response){
+        Dao dao = new Dao();
+            try {
+                dao.setTabela("SYSCADASTROS");
+                DataSet ds = dao.getRecords("");
+                request.setAttribute("cadastros-dinamicos", ds);
+            } catch (SQLException ex) {
+                Logger.getLogger(Base.class.getName()).log(Level.SEVERE, null, ex);
+            }
     }
     
     @Override
