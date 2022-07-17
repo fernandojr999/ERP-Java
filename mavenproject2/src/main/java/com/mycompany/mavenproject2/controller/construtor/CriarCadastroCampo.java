@@ -16,6 +16,7 @@ public class CriarCadastroCampo extends Base {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("utf8");
         if (validaAcesso(request, response)){
             String op = request.getParameter("op");
             if (op.equals("i")) {
@@ -23,10 +24,12 @@ public class CriarCadastroCampo extends Base {
                 String tipo = request.getParameter("tipo");
                 String nome = request.getParameter("nome");
                 String legenda = request.getParameter("legenda");
+                String tabelaReferenciada = request.getParameter("tabelaReferenciada");
+                String campoDescRef = request.getParameter("campoDescRef");
                 int id = new DataSet().NewID("SYSCADASTROCAMPOS");
                 
-                String comanIn = "INSERT INTO SYSCADASTROCAMPOS (ID, CADASTRO, NOME, LEGENDA, TIPO) "+
-                                 "VALUES ("+id+", "+cadastro+", '"+nome+"','"+legenda+"','"+tipo+"')";
+                String comanIn = "INSERT INTO SYSCADASTROCAMPOS (ID, CADASTRO, NOME, LEGENDA, TIPO, TABELAREFERENCIADA, CAMPODESCREF) "+
+                                 "VALUES ("+id+", "+cadastro+", '"+nome+"','"+legenda+"','"+tipo+"','"+tabelaReferenciada+"','"+campoDescRef+"')";
                 
                 Dao dao = new Dao();
                 dao.execCommand(comanIn);

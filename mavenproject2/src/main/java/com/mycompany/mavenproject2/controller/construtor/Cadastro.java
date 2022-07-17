@@ -1,8 +1,13 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
+ */
 package com.mycompany.mavenproject2.controller.construtor;
 
 import com.mycompany.mavenproject2.controller.Base;
 import com.mycompany.mavenproject2.dao.Dao;
 import com.mycompany.mavenproject2.dao.DataSet;
+import com.mycompany.mavenproject2.regras.FunConstrutor;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -11,65 +16,47 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ *
+ * @author sankhya
+ */
 public class Cadastro extends Base {
-    private String cadastrotabela;
-    private String cadastroNome;
-    private String cadastroLegenda;
-
-    public String getCadastrotabela() {
-        return cadastrotabela;
-    }
-
-    public void setCadastrotabela(String cadastrotabela) {
-        this.cadastrotabela = cadastrotabela;
-    }
-
-    public String getCadastroNome() {
-        return cadastroNome;
-    }
-
-    public void setCadastroNome(String cadastroNome) {
-        this.cadastroNome = cadastroNome;
-    }
-
-    public String getCadastroLegenda() {
-        return cadastroLegenda;
-    }
-
-    public void setCadastroLegenda(String cadastroLegenda) {
-        this.cadastroLegenda = cadastroLegenda;
-    }
-    
     public void preencherPropriedadesCadastro(HttpServletRequest request){
         try {
             Dao dao = new Dao();
             dao.setTabela("SYSCADASTROS");
             DataSet ds = dao.getRecords(" WHERE ID = "+request.getParameter("cad"));
-            setCadastrotabela(ds.getRegistros().get(0).getFieldValueByName("TABELANOME"));
-            setCadastroNome(ds.getRegistros().get(0).getFieldValueByName("NOME"));
-            setCadastroLegenda(ds.getRegistros().get(0).getFieldValueByName("LEGENDA"));
+            
+            request.setAttribute("cadastro-legenda", ds.getRegistros().get(0).getFieldValueByName("LEGENDA"));
+            request.setAttribute("cadastro-nome", ds.getRegistros().get(0).getFieldValueByName("NOME"));
+            request.setAttribute("cadastro-id", ds.getRegistros().get(0).getFieldValueByName("ID"));
         } catch (SQLException ex) {
             Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         if (validaAcesso(request, response)){
             preencherPropriedadesCadastro(request);
-            //request.setAttribute("registro", dao.getRecords("where id = "+request.getParameter("id")));
-            getServletContext().getRequestDispatcher("/Construtor/CadastroBase.jsp").forward(request, response);
-            
-            
+            String op = request.getParameter("op");
+            if ((op == null) || op.equals("")) {
+                getServletContext().getRequestDispatcher("/Construtor/CadastroBase-Lista.jsp").forward(request, response);
+            } else if (op.equals("n")){
+                FunConstrutor fun = new FunConstrutor();
+                request.setAttribute("cadastro-form", fun.retornaFormCadastro(Integer.parseInt(request.getParameter("cad"))));
+                getServletContext().getRequestDispatcher("/Construtor/CadastroBase-Cadastro.jsp").forward(request, response);
+            }
         }
     }
-
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-    
+        if (validaAcesso(request, response)){
+            
+        }
     }
 
     @Override

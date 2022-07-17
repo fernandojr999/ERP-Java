@@ -44,6 +44,14 @@
         <servlet-name>CriarCadastroCampo</servlet-name>
         <servlet-class>com.mycompany.mavenproject2.controller.construtor.CriarCadastroCampo</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Home</servlet-name>
+        <servlet-class>com.mycompany.mavenproject2.controller.Home</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Home</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Produto</servlet-name>
         <url-pattern>/Produto</url-pattern>

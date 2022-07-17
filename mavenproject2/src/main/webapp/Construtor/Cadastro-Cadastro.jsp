@@ -41,6 +41,10 @@
             <br><br>
             <label>Tabela</label> <br>
             <input type="text" name="tabelanome" id="tabelanome" <%if (ds != null){%>value="<%= ds.getRegistros().get(0).getFieldValueByName("tabelanome")%>"<%}%> >
+            
+            <br><br>
+            <label>Classe</label> <br>
+            <input type="text" name="classe" id="classe" <%if (ds != null){%>value="<%= ds.getRegistros().get(0).getFieldValueByName("classe")%>"<%}%> >
    
             <br><br>
             <input type="submit">
@@ -58,6 +62,8 @@
               <th>Nome</th>
               <th>Legenda</th>
               <th>Tipo</th>
+              <th>Tabela Referenciada</th>
+              <th>Campo Descrição</th>
               <th>Ações</th>
             </tr>
             <tr>
@@ -69,9 +75,12 @@
                         <option value="1">String</option>
                         <option value="2">Integer</option>
                         <option value="3">Date</option>
-                        <option value="3">Double</option>
+                        <option value="4">Double</option>
+                        <option value="5">Tabela Referenciada</option>
                     </select>
                 </th>
+                <th><input type="text" name="item-tabelareferenciada" id="item-tabelareferenciada"></th>
+                <th><input type="text" name="item-campodescref" id="item-campodescref"></th>
                 <th><button onclick="adicionarItemOnClick()">Adicionar</button>
                 </th>
             </tr>
@@ -84,7 +93,9 @@
                 <th><%= dsItens.getRegistros().get(i).getFieldValueByName("nome") %></th>
                 <th><%= dsItens.getRegistros().get(i).getFieldValueByName("legenda") %></th>
                 <th><%= dsItens.getRegistros().get(i).getFieldValueByName("tipo") %></th>
-                <th><a href="./PedidoItem?op=d&id=<%= dsItens.getRegistros().get(i).getFieldValueByName("id") %>">Excluir</a>
+                <th><%= dsItens.getRegistros().get(i).getFieldValueByName("tabelareferenciada") %></th>
+                <th><%= dsItens.getRegistros().get(i).getFieldValueByName("campodescref") %></th>
+                <th><a href="./CriarCadastroCampo?op=d&id=<%= dsItens.getRegistros().get(i).getFieldValueByName("id") %>&cadastro=<%= ds.getRegistros().get(0).getFieldValueByName("id") %>">Excluir</a>
                 </th>
 
             </tr>
@@ -105,8 +116,10 @@
                 let nome = document.querySelector("#item-nome").value;
                 let legenda = document.querySelector("#item-legenda").value;
                 let tipo = document.querySelector("#item-tipo").value;
-                
-                window.location.href = "./CriarCadastroCampo?op=i&cadastro="+cadastro+"&nome="+nome+"&legenda="+legenda+"&tipo="+tipo;
+                let tabelaReferenciada = document.querySelector("#item-tabelareferenciada").value;
+                let campoDescRef = document.querySelector("#item-campodescref").value;
+                window.location.href = "./CriarCadastroCampo?op=i&cadastro="+cadastro+"&nome="+nome+"&legenda="+legenda+
+                                       "&tipo="+tipo+"&tabelaReferenciada="+tabelaReferenciada+"&campoDescRef="+campoDescRef;
             } 
         </script>
     </body>

@@ -104,6 +104,26 @@ public class ComandosAtualizacao {
                 dao.execCommand("ALTER TABLE SYSCADASTROS ADD HTMLCAMPOS TEXT");
                 atualizaVersaoBanco(8);
             }
+            
+            if(versaoAtual < 9){            
+                dao.execCommand("INSERT INTO IDENTIFICADORES (ID, TABELANOME, IDENTIFICADOR) VALUES (6, 'PRODUTOS', 1)");
+                atualizaVersaoBanco(9);
+            }
+            
+            if(versaoAtual < 10){            
+                dao.execCommand("ALTER TABLE SYSCADASTROS ADD CLASSE VARCHAR(60)");
+                atualizaVersaoBanco(10);
+            }
+            
+            if(versaoAtual < 11){            
+                dao.execCommand("ALTER TABLE SYSCADASTROCAMPOS ADD TABELAREFERENCIADA VARCHAR(40)");
+                atualizaVersaoBanco(11);
+            }
+            
+            if(versaoAtual < 14){            
+                dao.execCommand("ALTER TABLE SYSCADASTROCAMPOS ADD CAMPODESCREF VARCHAR(40)");
+                atualizaVersaoBanco(14);
+            }
         } catch (SQLException ex) {
             Logger.getLogger(ComandosAtualizacao.class.getName()).log(Level.SEVERE, null, ex);
         }

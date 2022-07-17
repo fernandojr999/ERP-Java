@@ -6,7 +6,6 @@ package com.mycompany.mavenproject2.controller;
 
 import com.mycompany.mavenproject2.dao.Dao;
 import com.mycompany.mavenproject2.dao.DataSet;
-import com.mycompany.mavenproject2.dao.Registro;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;

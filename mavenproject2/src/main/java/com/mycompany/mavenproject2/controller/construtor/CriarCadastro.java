@@ -8,6 +8,7 @@ import com.mycompany.mavenproject2.controller.Base;
 import com.mycompany.mavenproject2.controller.Produto;
 import com.mycompany.mavenproject2.dao.Dao;
 import com.mycompany.mavenproject2.dao.DataSet;
+import com.mycompany.mavenproject2.regras.FunConstrutor;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -64,6 +65,10 @@ public class CriarCadastro extends Base {
                             } catch (SQLException ex) {
                                 Logger.getLogger(Produto.class.getName()).log(Level.SEVERE, null, ex);
                             }
+                        } else if(op.equals("g")){
+                            FunConstrutor fun = new FunConstrutor();
+                            fun.gerarHTMLCadastro(Integer.parseInt(request.getParameter("id")));
+                            response.sendRedirect(request.getContextPath() + "/CriarCadastro?op=e&id="+request.getParameter("id"));
                         }
                     }
                 }
@@ -94,6 +99,7 @@ public class CriarCadastro extends Base {
                 ds.getRegistros().get(0).getFieldByName("nome").setValue(request.getParameter("nome"));
                 ds.getRegistros().get(0).getFieldByName("legenda").setValue(request.getParameter("legenda"));
                 ds.getRegistros().get(0).getFieldByName("tabelanome").setValue(request.getParameter("tabelanome"));
+                ds.getRegistros().get(0).getFieldByName("classe").setValue(request.getParameter("classe"));
                 try {
                     ds.salvar();
                 } catch (Exception ex) {
