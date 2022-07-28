@@ -17,9 +17,9 @@
         <div>
             <%@include file="../header.html" %>
             <h2><%= request.getAttribute("cadastro-legenda") %></h2>
-            <a href="./" class="btn btn-dark btn-sm" onclick="pesquisarOnClick()" role="button">
+            <button class="btn btn-dark btn-sm" onclick="pesquisarOnClick()" role="button">
                 Voltar
-            </a>
+            </button>
             <a href="./Cadastro?cad=<%= request.getAttribute("cadastro-id") %>&op=n" class="btn btn-success btn-sm" onclick="pesquisarOnClick()" role="button">
                 Novo
             </a>

@@ -48,6 +48,14 @@
         <servlet-name>Home</servlet-name>
         <servlet-class>com.mycompany.mavenproject2.controller.Home</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CriarCadastroFiltro</servlet-name>
+        <servlet-class>com.mycompany.mavenproject2.controller.construtor.CriarCadastroFiltro</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BaseCadastro</servlet-name>
+        <servlet-class>com.mycompany.mavenproject2.controller.BaseCadastro</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Home</servlet-name>
         <url-pattern>/</url-pattern>
@@ -96,10 +104,22 @@
         <servlet-name>CriarCadastroCampo</servlet-name>
         <url-pattern>/CriarCadastroCampo</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CriarCadastroFiltro</servlet-name>
+        <url-pattern>/CriarCadastroFiltro</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BaseCadastro</servlet-name>
+        <url-pattern>/BaseCadastro</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
         <welcome-file-list>
             <welcome-file>Login</welcome-file>
         </welcome-file-list>
+        <error-page>
+            <exception-type>java.lang.Exception</exception-type>
+            <location>/erro</location>
+        </error-page>
     </session-config>
 </web-app>

@@ -50,7 +50,7 @@
             <input type="submit">
             
           </form> 
-            
+          <hr>  
           <%
             if (dsItens != null){
             %>
@@ -64,6 +64,7 @@
               <th>Tipo</th>
               <th>Tabela Referenciada</th>
               <th>Campo Descrição</th>
+              <th>Exibir Grade</th>
               <th>Ações</th>
             </tr>
             <tr>
@@ -81,6 +82,7 @@
                 </th>
                 <th><input type="text" name="item-tabelareferenciada" id="item-tabelareferenciada"></th>
                 <th><input type="text" name="item-campodescref" id="item-campodescref"></th>
+                <th><input type="checkbox" name="item-exibirgrade" id="item-exibirgrade"></th>
                 <th><button onclick="adicionarItemOnClick()">Adicionar</button>
                 </th>
             </tr>
@@ -95,6 +97,7 @@
                 <th><%= dsItens.getRegistros().get(i).getFieldValueByName("tipo") %></th>
                 <th><%= dsItens.getRegistros().get(i).getFieldValueByName("tabelareferenciada") %></th>
                 <th><%= dsItens.getRegistros().get(i).getFieldValueByName("campodescref") %></th>
+                <th><%= dsItens.getRegistros().get(i).getFieldValueByName("exibirgrade") %></th>
                 <th><a href="./CriarCadastroCampo?op=d&id=<%= dsItens.getRegistros().get(i).getFieldValueByName("id") %>&cadastro=<%= ds.getRegistros().get(0).getFieldValueByName("id") %>">Excluir</a>
                 </th>
 
@@ -106,7 +109,58 @@
             <%
             }
             %>
+            <hr>  
+            <%
+            if (dsItens != null){
+            %>
+            <h3>Filtros</h3>
             
+            <table border="1px">
+            <tr>
+              <th># ID</th>
+              <th>Campo</th>
+              <th>Sequência</th>
+              <th>Tipo</th>
+              <th>Ações</th>
+            </tr>
+            <tr>
+                <th></th>
+                <th><input type="text" name="filtro-campo" id="item-campo"></th>
+                <th><input type="text" name="filtro-sequencia" id="item-sequencia"></th>
+                <th>
+                    <select name="filtro-tipo" id="filtro-tipo">
+                        <option value="1">String</option>
+                        <option value="2">Integer</option>
+                        <option value="3">Date</option>
+                        <option value="4">Double</option>
+                        <option value="5">Tabela Referenciada</option>
+                        <option value="6">Intervalo de Datas</option>
+                    </select>
+                </th>
+                <th><button onclick="adicionarFiltroOnClick()">Adicionar</button>
+                </th>
+            </tr>
+            
+            <%
+            for (int i = 0; i <= dsItens.getRegistros().size() - 1; i++){
+            %>
+            <tr>
+                <th><%= dsItens.getRegistros().get(i).getFieldValueByName("id") %></th>
+                <th><%= dsItens.getRegistros().get(i).getFieldValueByName("campos") %></th>
+                <th><%= dsItens.getRegistros().get(i).getFieldValueByName("sequencia") %></th>
+                <th><%= dsItens.getRegistros().get(i).getFieldValueByName("tipo") %></th>
+                <th><a href="./CriarCadastroCampo?op=d&id=<%= dsItens.getRegistros().get(i).getFieldValueByName("id") %>&cadastro=<%= ds.getRegistros().get(0).getFieldValueByName("id") %>">Excluir</a>
+                </th>
+
+            </tr>
+            <%
+                }
+            %>
+            </table>
+            <%
+            }
+            %>
+            <hr>  
             
         
         
@@ -118,6 +172,16 @@
                 let tipo = document.querySelector("#item-tipo").value;
                 let tabelaReferenciada = document.querySelector("#item-tabelareferenciada").value;
                 let campoDescRef = document.querySelector("#item-campodescref").value;
+                let exibirGrade = document.querySelector("#item-exibirgrade").value;
+                window.location.href = "./CriarCadastroCampo?op=i&cadastro="+cadastro+"&nome="+nome+"&legenda="+legenda+
+                                       "&tipo="+tipo+"&tabelaReferenciada="+tabelaReferenciada+"&campoDescRef="+campoDescRef+"&exibirGrade="+exibirGrade;
+            } 
+            
+            function adicionarFiltroOnClick(){
+                let cadastro = document.querySelector("#id").value;
+                let campo = document.querySelector("#filtro-canpo").value;
+                let sequencia = document.querySelector("#filtro-sequencia").value;
+                let tipo = document.querySelector("#filtro-tipo").value;
                 window.location.href = "./CriarCadastroCampo?op=i&cadastro="+cadastro+"&nome="+nome+"&legenda="+legenda+
                                        "&tipo="+tipo+"&tabelaReferenciada="+tabelaReferenciada+"&campoDescRef="+campoDescRef;
             } 

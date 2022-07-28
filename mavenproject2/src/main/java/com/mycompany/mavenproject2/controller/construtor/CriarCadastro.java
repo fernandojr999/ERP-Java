@@ -56,7 +56,7 @@ public class CriarCadastro extends Base {
                             try {
                                 Dao daoIte = new Dao();
                                 daoIte.setTabela("SYSCADASTROCAMPOS");
-                                request.setAttribute("campos", daoIte.getRecords(""));
+                                request.setAttribute("campos", daoIte.getRecords("where CADASTRO = "+request.getParameter("id")));
                                 
                                 Dao dao = new Dao();
                                 dao.setTabela("SYSCADASTROS");

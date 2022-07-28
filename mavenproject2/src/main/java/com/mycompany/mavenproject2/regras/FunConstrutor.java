@@ -18,7 +18,7 @@ public class FunConstrutor {
     public boolean gerarHTMLCadastro(int cadastro){
         try {
             String form = "";
-            form = "<form action=\"./Cadastro?idcad="+cadastro+"\" method=\"POST\">";
+            form = "<form action=\"./Cadastro?cad="+cadastro+"\" method=\"POST\">";
             
             Dao dao = new Dao();
             dao.setTabela("SYSCADASTROCAMPOS");

@@ -124,6 +124,51 @@ public class ComandosAtualizacao {
                 dao.execCommand("ALTER TABLE SYSCADASTROCAMPOS ADD CAMPODESCREF VARCHAR(40)");
                 atualizaVersaoBanco(14);
             }
+            
+            if(versaoAtual < 15){            
+                dao.execCommand("CREATE TABLE SYSCOMANDOS("
+                        + " ID INT PRIMARY KEY,"
+                        + " COMANDO TEXT,"
+                        + " EXECUTADO CHAR(1),"
+                        + " SEQUENCIA INT)");
+                atualizaVersaoBanco(15);
+            }
+            
+            if(versaoAtual < 17){            
+                dao.execCommand("INSERT INTO IDENTIFICADORES (ID, TABELANOME, IDENTIFICADOR) VALUES (7, 'SYSCOMANDOS', 1)");
+                atualizaVersaoBanco(17);
+            }
+            
+            if(versaoAtual < 18){            
+                dao.execCommand("CREATE TABLE SYSFILTROCAMPOS("
+                        + " ID INT PRIMARY KEY,"
+                        + " CAMPONOME VARCHAR(40),"
+                        + " SEQUENCIA INT, "
+                        + " CADASTRO INT, "
+                        + " TIPO VARCHAR(20), "
+                        + " FOREIGN KEY (CADASTRO) REFERENCES SYSCADASTROS (ID))");
+                atualizaVersaoBanco(18); 
+            } 
+            
+            if(versaoAtual < 21){            
+                dao.execCommand("CREATE TABLE SYSMODULOS("
+                        + "  ID INT PRIMARY KEY,"
+                        + "  SEQUENCIA INT,"
+                        + "  NOME VARCHAR(60),"
+                        + "  LEGENDA VARCHAR(60))");
+                atualizaVersaoBanco(21); 
+            }
+            
+            if(versaoAtual < 22){            
+                dao.execCommand("INSERT INTO IDENTIFICADORES (ID, TABELANOME, IDENTIFICADOR) VALUES (8, 'SYSMODULOS', 1)");
+                atualizaVersaoBanco(22); 
+            }
+            
+            if(versaoAtual < 23){            
+                dao.execCommand("ALTER TABLE SYSCADASTROCAMPOS ADD EXIBIRGRADE CHAR(1)");
+                atualizaVersaoBanco(23); 
+            }
+            
         } catch (SQLException ex) {
             Logger.getLogger(ComandosAtualizacao.class.getName()).log(Level.SEVERE, null, ex);
         }

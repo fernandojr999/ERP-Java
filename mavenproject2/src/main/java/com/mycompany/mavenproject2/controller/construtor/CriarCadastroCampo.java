@@ -26,10 +26,17 @@ public class CriarCadastroCampo extends Base {
                 String legenda = request.getParameter("legenda");
                 String tabelaReferenciada = request.getParameter("tabelaReferenciada");
                 String campoDescRef = request.getParameter("campoDescRef");
+                String exibirGrade = request.getParameter("exibirGrade");
+                
+                if (exibirGrade.equals("on")) {
+                    exibirGrade = "S";
+                } else {
+                    exibirGrade = "N";
+                }
                 int id = new DataSet().NewID("SYSCADASTROCAMPOS");
                 
-                String comanIn = "INSERT INTO SYSCADASTROCAMPOS (ID, CADASTRO, NOME, LEGENDA, TIPO, TABELAREFERENCIADA, CAMPODESCREF) "+
-                                 "VALUES ("+id+", "+cadastro+", '"+nome+"','"+legenda+"','"+tipo+"','"+tabelaReferenciada+"','"+campoDescRef+"')";
+                String comanIn = "INSERT INTO SYSCADASTROCAMPOS (ID, CADASTRO, NOME, LEGENDA, TIPO, TABELAREFERENCIADA, CAMPODESCREF, EXIBIRGRADE) "+
+                                 "VALUES ("+id+", "+cadastro+", '"+nome+"','"+legenda+"','"+tipo+"','"+tabelaReferenciada+"','"+campoDescRef+"','"+exibirGrade+"')";
                 
                 Dao dao = new Dao();
                 dao.execCommand(comanIn);
